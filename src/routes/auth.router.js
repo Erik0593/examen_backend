@@ -1,7 +1,7 @@
 //auth/login
 const express = require('express')
 const createError = require('http-errors')
-const users = require('../usecases/users.usecase')
+const Users = require('../usecases/users.usecase')
 const router = express.Router()
 
 
@@ -12,7 +12,7 @@ router.post('/login', async (request, response) => {
         if (!email) throw new createError(400, 'Email is required')
         if (!password) throw new createError(400, 'Password is required')
 
-        const token = await users.login(email, password)
+        const token = await Users.login(email, password)
 
         response.json({
             ok: true,
